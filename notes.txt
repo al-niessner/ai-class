@@ -1,0 +1,52 @@
+Section 1: Introduction
+
+Intelligent Agent introduction to the perception-action-cycle.
+
+Terminology: (reinforced)
+   Fully Observable: immediately measurable information is sufficient to make optimal choice
+   Partially Observable: immediately measurable information is not sufficient to make optimal choice but adding history improves or allows for optimal choice
+
+   Deterministic: actions uniquely determine outcome
+   Stochastic: actions cause probablistic outcome
+
+   Discrete:
+   Continuous:
+
+   Benign: actions are neutral
+   Adversarial: actions cause counter reactions
+
+
+Examples:
+   Checkers: fully observable, deterministic, discrete, and adversarial
+   Poker: partially observable, stochastic, discreete, and adversarial
+   Robotic Car: partially observable, stochastic, continuous, benign
+
+
+AI deals with and manages uncertainty rationally.
+
+
+
+Section 2: Problem Solving
+
+Definiton of a problem:
+   1) initial state
+   2) action (state) -> { a_1, a_2, ..., a_n } -- can be dependent on the state!
+   3) result (state, action) -> state_1
+   4) goalTest (state_1) -> boolean
+   5) pathCost (path) -> costOfPath where path is a sequence of states and actions
+      stepCost (state, action, state_1) where path is sum of steps 
+
+   Infinite set complete: breadth first and uniform cost
+
+   A* search finds lowest cost path IF:
+      h(s) < true cost which is to say
+      h(s) never overestimates cost which is to say
+      h(s) is optimistic which is to say
+      h(s) is admissable
+
+Problem solving works when the domain is:
+   1) Fully observable
+   2) Known (know set of available actions)
+   3) Discrete (finite number of actions)
+   4) Deterministic (know result of taking an action)
+   5) Static (only our actions change the world)
