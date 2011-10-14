@@ -151,3 +151,12 @@ def test (verbose=False):
     solution = search.general.find (problem, verbose)
     print "Solution: " + problem.expand (solution)
     pass
+
+if __name__ == "__main__":
+    from argparse import ArgumentParser
+    ap = ArgumentParser()
+    ap.add_argument("--verbose", "-v", action="store_true", default=False, required=False,
+                    help="Turn on verbosity to view the decision tree.")
+    args = ap.parse_args()
+    test (args.verbose)
+    pass
