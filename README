@@ -1,0 +1,3 @@
+This contains the self imposed work that I did for Standfords AI class.
+
+The first assignment was to implement the general search algorithm from chapter 3 of the book. It is contained in search/genreal.py and search/romania.py.
