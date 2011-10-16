@@ -44,6 +44,14 @@ class BreadthFirstStrategy(object):
         return 1
     pass
 
+class DepthFirstStrategy(object):
+    def _heuristic (self, state, action):
+        return 0
+
+    def _stepCost (self, state, action):
+        return -1
+    pass
+
 class UniformCostStrategy(object):
     def __init__ (self, costFunc):
         object.__init__ (self)

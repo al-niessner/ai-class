@@ -1,6 +1,7 @@
 
 from general import Action
 from general import BreadthFirstStrategy
+from general import DepthFirstStrategy
 from general import Neighbor
 from general import Problem
 from general import UniformCostStrategy
@@ -139,6 +140,10 @@ def test (verbose=False):
     import search.general
     print "\n\nBreadth First Strategy\n======"
     problem = TravelMap(strategy=BreadthFirstStrategy())
+    solution = search.general.find (problem, verbose)
+    print "Solution: " + problem.expand (solution)
+    print "\n\nDepth First Strategy\n======"
+    problem = TravelMap(strategy=DepthFirstStrategy())
     solution = search.general.find (problem, verbose)
     print "Solution: " + problem.expand (solution)
     print "\n\nUniform Cost Strategy\n======"
