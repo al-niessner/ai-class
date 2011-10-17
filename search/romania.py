@@ -1,10 +1,10 @@
 
-from general import Action
-from general import BreadthFirstStrategy
-from general import DepthFirstStrategy
-from general import Neighbor
-from general import Problem
-from general import UniformCostStrategy
+from classic import Action
+from classic import BreadthFirstStrategy
+from classic import DepthFirstStrategy
+from classic import Neighbor
+from classic import Problem
+from classic import UniformCostStrategy
 
 class TravelMap(Problem):
     def __init__ (self, strategy=None):

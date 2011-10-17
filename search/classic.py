@@ -1,3 +1,8 @@
+"""A general classic search algorithm.
+
+To be used with fully observable, deterministic, discrete, and static (a subset
+of benign) problems.
+"""
 
 from collections import namedtuple
 
