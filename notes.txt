@@ -50,3 +50,81 @@ Problem solving works when the domain is:
    3) Discrete (finite number of actions)
    4) Deterministic (know result of taking an action)
    5) Static (only our actions change the world)
+
+
+Setion 3:
+
+Product Rule:
+   P(A|B) = P(A, B) / P(B)
+
+Total Probability:
+   P(A) = sum (P(A|B_k)*P(B_k))
+   where k=1,2,...,K making a complete sample set. For instance, true and false in the case of B being boolean.
+
+Bayes Rule:
+             P(B|A) * P(A)
+   P(A|B) =  -------------
+                  P(B)
+
+   where, B is the evidence
+          A is the outcome
+          P(A|B) is the diagnostic or posterior
+          P(B|A) is the causal or likelihood
+          P(A)   is the prior 
+          P(B)   is the marginal likelihood and often the difficult part
+
+Can defer computing P(B) by using P(~A|B) ==>>
+
+              P(B|~A) * P(~A)
+   P(~A|B) =  ------------- 
+                   P(B)
+
+                1
+   eta = ---------------
+         P(A|B) + P(~A|B)
+
+            
+   P(A|B) =  eta * P(B|A) * P(A)
+
+Chain rule:
+P(A_1,A_2,...,A_k) = P(A_k|A_k-1,...,A_1)...P(A_2|A_1)P(A_1)
+
+Networks: lines are influcencs in the direction of the arrow.
+d-separatin or reachability
+
+     Caps are unknown and lower are known
+Active Triplets                Inactive Triplets (conditionally independent)
+  A -> B -> C                    A -> b -> C
+  A <- B -> C                    A <- b -> C
+  A -> b <- C                    A -> B <- C
+
+In the last case, b can be known through a direct decendent.
+
+
+Section 4:
+-- Intentionally left blank
+
+
+
+Section 5:
+
+Maximum Liklihood: P(x) = count(x) / N
+
+                          count(x) + k
+Laplace Smoothing: P(x) = ------------
+                            N + k|x|
+
+
+Linear Regression: f(x) = w_1 * x + w_0
+
+                                1
+Logistic Regression: z = ---------------
+                               -f(x)
+                          1 + e
+
+
+Section 6:
+
+k-means: Fit k cluster centers.
+
+k-means generalizes into expectation maximization via Gaussian distributions
