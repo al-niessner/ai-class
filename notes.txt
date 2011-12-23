@@ -39,7 +39,7 @@ Definiton of a problem:
    Infinite set complete: breadth first and uniform cost
 
    A* search finds lowest cost path IF:
-      h(s) < true cost which is to say
+      h(s) <= true cost which is to say
       h(s) never overestimates cost which is to say
       h(s) is optimistic which is to say
       h(s) is admissable
@@ -128,3 +128,253 @@ Section 6:
 k-means: Fit k cluster centers.
 
 k-means generalizes into expectation maximization via Gaussian distributions
+
+
+
+Section 7:
+
+First Order Logic (FOL)
+
+
+
+Section 8:
+
+Situation Calculus
+
+   1) actions (a) are represented by objects in FOL
+   2) situations (s) are objects in FOL and are paths not states
+
+   s' = Result (s,a)
+
+   possible predicate: Poss (a,s)
+      some precond(s) => Poss (a,s)
+
+   Conventions:
+      functions that change for the situation (fluents) always list the situation last
+      successor-state axioms used to describe situation following an action
+
+
+
+Section 9:
+
+Markov Decision Process (MDP)
+   states s_1, ..., s_N --> fully observable
+   actions a_1, ..., a_K
+   state transition matrix T(s, a, s') = P(s'|a,s)
+   reward function R(s)
+
+The states and actions are a traditional FSM. The stochastic nature of the transition matrix is what makes it more and transforms it to an MDP. The reward seems to act mostly a hueristic.
+
+
+Policy => pi(s) -> a
+
+Value function: a potential function that leads from the goal locaiton as the peak of a gradient across the space. Hill climbing can then be used to choose the best path.
+
+Value iteration: iterate over value functions to find the optimal
+The iteration is over possible states from s given and action a.
+
+
+
+Section 10:
+
+Supervised learning: given set of tuples, learn f such that y = f(x)
+Unsupervised learning: given set of data, learn P such that P(X=x)
+Reinforcement learning: given sequence of states and actions, learn the optimal policy given a state ==> pi(s)
+
+Utility based agent: know P, learn R which gives U and then use U
+Q-learning agent: do not know P, learn a Q(s,a) as a sub for R and then use Q
+Reflex agent: do not know P or R, just choose a policy pi(s)
+
+The reflex agent is perfect example of locally handling an exception. Know what to do simply because of the state it is in.
+
+Passive reinforcement learning: passive means uses a fixed policy but learns about P and R while applying the policy.
+
+Active reinforcement learning: changes the policy from what is learned.
+
+
+
+Section 11:
+
+Hidden Markov Model
+   - hidden because the state is observable through an emitted measurable and
+     not the state itself. Does this imply partially observable?
+
+     For instance, the robot that wanders the museum. It does not know its
+     location, but, rather, uses range finding sensors to measure objects around
+     it and then infers its location (state) from the range data and a map.
+
+Stationary Distribution
+   P(A_t) = P(A_t|A_t-1) * P(A_t-1) + P(A_t|B_t-1) * P(B_t-1)
+
+   in the stationary distribution, P(A_t) = P(A_t-1) = x
+                                             P(B_t-1) = 1 - x
+ 
+Estimation: P(x_1 | z_1) where x_1 is the state and z_1 is the measurement
+   Use Bayes Rule to restructure
+               
+   P(x_1|z_1) = eta P(z_1|x_1) P(x_1) where eta is the normalizer as before
+
+Prediction: P(x_2) = total probability
+
+Hidden Markov Model parameters: P(x_0), P(z|x), and P(x_n|x_n-1)
+
+
+
+Section 12: review
+
+
+Section 13:
+
+Time complexity is b**m where b is the branching and m is the depth
+Space complexity is bm where b is branching and m is depth
+
+Use alpha-beta pruning to reduce time complexity
+Use depth limits to reduce space complexity
+Use a graph to reduce both, but graphs require simplified conditions like end games or openings.
+
+
+
+Section 14:
+
+Dominant Strategy:
+   A strategy for which a player does better no matter what the other player does.
+
+Pareto Optimal Outcome:
+   No other outcome that all other players would prefer.
+
+Equillibrium:
+   No player can benefit from switching to another strategy if all other players remain the same.
+
+
+
+Section 15:
+
+Earliest start time: ES
+Lastest start time: LS
+
+ES(s) = 0 where s is the start
+LS(f) = ES(f) where f is the finish
+
+ES(B) = max_{over all A -> B} ES(A) + duration (A)
+LS(A) = min+{over all B <- A} LS(B) - duration (A)
+
+where -> is proceeds and <- is follows
+
+Heirarchical Planning is used to close the abstraction gap also called refinement planning.
+
+
+
+Section 16:
+
+Pinhole camera:
+x/f = X/Z where x is the projection height
+                f is the focal length
+                X is the object height
+                Z is the distance from the pinhole
+
+Also known as Perspective Projection
+
+1/f = 1/Z + 1/z where f is the focal length
+                      Z is the extrinsic distance (to the object)
+                      a is the intrinsic distance (lens to focal plane)
+
+Computer vision
+   - classify objects
+   - 3D reconstrunction
+   - motion analysis
+
+Linear Filter: I x g -> I' where I is the image
+                                 x is the convolution operator
+                                 g is the kernel
+                                 I' is the resultant
+   translates to
+               I'(x,y) = sum_u,v I(x-u, y-v) * g(u,v)
+
+Edge detector (Gradient Image): E = sqrt (I_x**2 + I_y**2)
+Canny Edge Detector: more sophisticated and better edge detector
+Fancy kernels: Prewitt, Sobel, Kirsh, etc.
+
+Reasons to blur and image (apply a gaussain kernel):
+   - down sampling (blur first to reduce aliasing)
+   - pixel noise reduction
+
+Harris Corner Detector: uses eigenvalue decomposition to
+
+           sum (I_x**2)    sum (I_x * I_y)
+          sum (I_x * I_y)   sum (I_y**2)
+
+and both eigenvalues are large gives us a corner
+
+Modern Feature Detectors:
+   - localizable
+   - unique signatures
+
+   HOG  = Histogram of Oriented Gradients
+   SIFT = Scale Invariant Feature Transform
+
+
+
+Section 17:
+
+Stereoscopic vision (two pinhole camera):
+     x_2 - x_1     B
+     ---------  =  -     where x_2 is the distance from the hole 2 to the image
+         f         Z           x_1 is the distance from the hole 1 to the image
+                               B   is the baseline or distance between pinholes
+                               f   is the focal length
+                               Z   is the range or distance to the point
+
+Dynamic Programming:
+   Use the cost model of a mismatch vs occlusion to correlate pixels in an image.
+
+
+
+Section 18:
+
+Structure from Motion: Structure means 3D world
+                       Motion means location of camera
+
+m camera poses
+n points in the scene
+
+2mn constraints
+6m + 2n unknowns
+
+6m + 2n - 7 <= 2mn for a well posed problem
+   where the 7 represents the non-recoverable scale and absolute location
+
+
+
+Sections 19 and 20 are purposely omitted.
+
+
+
+Section 21:
+
+Language Models (2 camps):
+   - sequence of letters or words
+     * probabilistic
+     * word-based
+     * learned
+
+   - logical
+     * tree
+     * category
+     * hand coded
+
+Probablility Models:
+   P(w_1, w_2, ..., w_n) = P(w_1:n)
+
+   Markov Assumption
+      P(w_i|w_1:i-1) = P(w_i|w_i-k:i-1)
+      where k = 1 is first Markov
+
+   Stationary Assumption
+      P(w_i|w_i-1) = P(w_j|w_j-1)
+
+   Smoothing as in Lapacian Smoothing.
+
+The best segmentation is maximum of the joint probability
+   S* = max P(w_1:n)
+   Approximate it with Markov Assumption
+   Still leaves 2**(n-1) seqmentations where there are n characters
